@@ -9,7 +9,12 @@ description = "A collection of reusable utilities for microservices development"
 authors = [
     {name = "Angel De Leon", email = "49047072+AngelDeLeon96@users.noreply.github.com"},
 ]
-dependencies = []
+dependencies = [
+    "python-jose[cryptography]",
+    "passlib[bcrypt]",
+    "fastapi",
+    "python-dotenv",
+]
 requires-python = ">=3.10"
 readme = "README.md"
 license = "MIT"
@@ -19,4 +24,8 @@ Homepage = "https://github.com/AngelDeLeon96/microservices-utils"
 Repository = "https://github.com/AngelDeLeon96/microservices-utils.git"
 
 [tool.setuptools]
-packages = ["microservices_utils"]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["venv", "venv.*", "tests", "tests.*"]
