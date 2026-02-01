@@ -25,9 +25,10 @@ class ResponseHandler:
             "success": True,
             "message": message,
             "data": data,
+            "status_code": status_code,
         }
 
-        return response, status_code
+        return response
 
     @staticmethod
     def error(message=GeneralMessages.ERROR.value, status_code=400, error_details=None):
@@ -45,12 +46,13 @@ class ResponseHandler:
         response = {
             "Success": False,
             "Message": message,
+            "status_code": status_code,
         }
 
         if error_details is not None:
             response["ErrorDetails"] = error_details
 
-        return response, status_code
+        return response
 
     @staticmethod
     def created(data=None, message=GeneralMessages.SUCCESS.value):

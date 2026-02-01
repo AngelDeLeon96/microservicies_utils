@@ -32,15 +32,15 @@ def test_response_handler_functionality():
     from microservices_utils import ResponseHandler
 
     # Test success response
-    response, status = ResponseHandler.success({"test": "data"})
-    assert status == 200
+    response = ResponseHandler.success({"test": "data"})
+    assert response["status_code"] == 200
     assert response["success"] is True
     assert "data" in response
     assert response["data"]["test"] == "data"
 
     # Test error response
-    response, status = ResponseHandler.error("Test error")
-    assert status == 400
+    response = ResponseHandler.error("Test error")
+    assert response["status_code"] == 400
     assert response["Success"] is False  # Note: Capital S
     assert response["Message"] == "Test error"
 
