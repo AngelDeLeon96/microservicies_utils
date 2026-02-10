@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "microservices-utils"
-version = "1.0.0"
+version = "1.0.1"
 description = "A collection of reusable utilities for microservices development"
 authors = [
     {name = "Angel De Leon", email = "49047072+AngelDeLeon96@users.noreply.github.com"},
