@@ -52,13 +52,19 @@ class JwtHandler:
                 credentials.credentials, SECRET_KEY, algorithms=[ALGORITHM]  # type: ignore
             )
             username = payload.get("sub")
-            if username is None:
+            role = payload.get("role")
+
+            if username is None or role is None:
                 raise HTTPException(status_code=401, detail="Invalid token")
-            return username
+            return {"username": username, "role": role}
+
         except JWTError:
             raise HTTPException(status_code=401, detail="Invalid token")
 
     @staticmethod
-    # Dependency for protected routes
-    def get_current_user(username: str = Depends(verify_token)):
-        return username
+    def get_current_user(data_user: dict = Depends(verify_token)):
+        return data_user.get("username")
+
+    @staticmethod
+    def get_current_user_role(data_user: dict = Depends(verify_token)):
+        return data_user.get("role")
